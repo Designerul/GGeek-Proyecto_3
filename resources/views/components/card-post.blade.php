@@ -1,8 +1,13 @@
 @props(['post'])
 
 <article class="mb-6 bg-white shadow-lg rounded-lg overflow-hidden">
-    {{-- Muestra de imagen --}}
-    <img class="w-full h-80 object-cover object-center" src="{{  Storage::url($post->image->url) }}" alt="">
+    
+    {{-- Muestra de imagen con codicional if --}}
+    @if ($post->image)
+        <img class="w-full h-80 object-cover object-center" src="{{ Storage::url($post->image->url) }}" alt="">
+    @else
+        <img class="w-full h-80 object-cover object-center" src="https://cdn.pixabay.com/photo/2021/03/22/01/58/monk-6113501_960_720.png" alt="">
+    @endif
 
     {{-- Muestra el titulo del post y extracto --}}
     <div class="px-6 py-2">
@@ -11,7 +16,7 @@
         </h1>
 
         <div class="text-gray-700 text-base">
-            {{ $post->extract }}
+            {!! $post->extract !!}
         </div>
     </div>
 
