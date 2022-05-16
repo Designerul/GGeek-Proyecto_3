@@ -226,7 +226,7 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
+        /* [
             'type'         => 'navbar-search',
             'text'         => 'search',
             'topnav_right' => true,
@@ -234,9 +234,9 @@ return [
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
-        ],
+        ], */
 
-        // Sidebar items:
+        // Apartado de blog, Dashboard y Usuarios:
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -246,32 +246,44 @@ return [
             'text'        => 'Dashboard',
             'url'         => 'admin',
             'icon'        => 'fas fa-fw fa-home',
+            'can' => 'admin.home'
+        ],
+        [
+            'text'        => 'Usuarios',
+            'route'         => 'admin.users.index',
+            'icon'        => 'fas fa-users fa-fw',
+            'can' => 'admin.users.index'
         ],
 
-        ['header' => 'ADMINISTRADOR'],
+        /* Apartado de Categorias y Etiquetas */
         [
             'text' => 'Categorias',
             'route'  => 'admin.categories.index',
             'icon' => 'fab fa-fw fa-buffer',
             'active' => ['admin/categories*'],
+            'can' => 'admin.categories.index'
         ],
         [
             'text' => 'Etiquetas',
             'route'  => 'admin.tags.index',
             'icon' => 'far fa-fw fa-bookmark',
             'active' => ['admin/tags*'],
+            'can' => 'admin.tags.index'
         ],
 
+        /* Apartado de opciones de Blog */
         ['header' => 'OPCIONES DE BLOG'],
         [
             'text'  => 'Lista de post',
             'route' => 'admin.posts.index',
             'icon' => 'fas fa-fw fa-clipboard',
+            'can' => 'admin.posts.index'
         ],
         [
             'text' => 'Crear nuevo post',
             'route' => 'admin.posts.create',
             'icon' => 'fas fa-fw fa-file',
+            'can' => 'admin.posts.create'
         ],
     ],
 
