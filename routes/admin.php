@@ -20,4 +20,4 @@ Route::resource('tags', TagController::class)->except('show')->names('admin.tags
 Route::resource('posts', PostController::class)->except('show')->names('admin.posts');
 
 /* Rutas de User */
-Route::resource('users', UserController::class)->only(['index', 'edit', 'update'])->names('admin.users');
+Route::resource('users', UserController::class)->only(['index', 'edit', 'update', 'destroy'])->names('admin.users');

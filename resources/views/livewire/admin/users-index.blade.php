@@ -1,6 +1,13 @@
 <div>
     <div class="card">
 
+        {{-- Alerta de borrado --}}
+        @if (session('infodelete'))
+            <div class="alert alert-danger">
+                <strong>{{ session('infodelete') }}</strong>
+            </div>
+        @endif
+
         {{-- Barra de busqueda por nombre y correo de usuario  --}}
         <div class="card-header">
             <input wire:model="search" class="form-control" type="text" placeholder="Ingrese el nombre o correo de un usuario">
@@ -16,6 +23,7 @@
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Email</th>
+                            <th>Rol</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -26,8 +34,25 @@
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
+
+                                {{-- Recuperar rol de usuario --}}
+                                <td>{{ $user->getRoleNames() }}</td>
+                                
+
                                 <td width="10px">
-                                    <a class="btn btn-primary" href="{{ route('admin.users.edit', $user) }}">Editar</a>
+                                    <a class="btn btn-primary btn-sm" href="{{ route('admin.users.edit', $user) }}">Editar</a>
+                                </td>
+
+                                {{-- Boton para eliminar de usuario --}}
+                                <td width="10px">
+                                    @can('admin.users.destroy')
+                                        <form action="{{ route('admin.users.destroy', $user) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+
+                                            <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+                                        </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

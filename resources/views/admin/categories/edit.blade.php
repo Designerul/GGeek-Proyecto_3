@@ -1,8 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Dashboard Categorias')
 
 @section('content_header')
+    {{-- Boton de regreso --}}
+    <a class="btn btn-primary btn-sm float-right" href="{{ route('admin.categories.index') }}">Regresar</a>
+
     <h1>Editar categoria</h1>
 @stop
 
@@ -17,12 +20,6 @@
     @endif
 
     <div class="card">
-
-        {{-- Boton de regreso --}}
-        <div class="card-header">
-            <a class="btn btn-primary btn-sm" href="{{ route('admin.categories.index') }}">Regresar</a>
-        </div>
-
         <div class="card-body">
             {!! Form::model($category ,['route' => ['admin.categories.update', $category], 'method' => 'put']) !!}
 

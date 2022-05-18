@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Dashboard Posts')
 
 @section('content_header')
     {{-- Boton de agregar post --}}

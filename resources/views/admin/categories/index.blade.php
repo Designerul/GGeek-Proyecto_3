@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Dashboard Categorias')
 
 @section('content_header')
     {{-- Boton para crear nueva categoria --}}
@@ -34,7 +34,8 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Nombre</th>
+                        <th>Slug</th>
                         <th colspan="2"></th>
                     </tr>
                 </thead>
@@ -44,6 +45,7 @@
                         <tr>
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->name }}</td>
+                            <td>{{ $category->slug }}</td>
 
                             {{-- Boton para editar categoria --}}
                             <td width="10px">

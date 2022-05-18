@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Dashboard Etiquetas')
 
 @section('content_header')
     {{-- Boton para crear nueva etiqueta --}}
@@ -33,7 +33,8 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Nombre</th>
+                        <th>Slug</th>
                         <th colspan="2"></th>
                     </tr>
                 </thead>
@@ -43,6 +44,7 @@
                         <tr>
                             <td>{{ $tag->id }}</td>
                             <td>{{ $tag->name }}</td>
+                            <td>{{ $tag->slug }}</td>
                             
                             {{-- Boton para editar etiqueta --}}
                             <td width="10px">

@@ -1,8 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Dashboard Users')
 
 @section('content_header')
+    {{-- Boton de regreso --}}
+    <a class="btn btn-primary btn-sm float-right" href="{{ route('admin.users.index') }}">Regresar</a>
+
     <h1>Asignar un rol</h1>
 @stop
 
@@ -26,14 +29,10 @@
             <h2 class="h5">Listado de roles:</h2>
             {!! Form::model($user, ['route' => ['admin.users.update', $user], 'method' => 'put']) !!}
 
-                @foreach ($roles as $role)
-                    <div>
-                        <label>
-                            {!! Form::checkbox('roles[]', $role->id, null, ['class' => 'mr-1']) !!}
-                            {{ $role->name }}
-                        </label>
-                    </div> 
-                @endforeach
+                {{-- Seleccionar rol de usuario --}}
+                <div class="form-group">
+                    {!! Form::select('roles', $roles, null, ['class' => 'form-control']) !!}
+                </div>
                 
                 {{-- Boton para agregar rol --}}
                 {!! Form::submit('Asignar rol', ['class' => 'btn btn-primary mt-2']) !!}

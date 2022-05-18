@@ -46,7 +46,7 @@ return [
     */
 
     'logo' => '<b>GG</b>eek',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'image/logoGGeek_control.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -252,6 +252,7 @@ return [
             'text'        => 'Usuarios',
             'route'         => 'admin.users.index',
             'icon'        => 'fas fa-users fa-fw',
+            'active' => ['admin/users*'],
             'can' => 'admin.users.index'
         ],
 
@@ -277,6 +278,7 @@ return [
             'text'  => 'Lista de post',
             'route' => 'admin.posts.index',
             'icon' => 'fas fa-fw fa-clipboard',
+            'active' => ['admin/posts/index', 'admin/posts/*/edit'],
             'can' => 'admin.posts.index'
         ],
         [
