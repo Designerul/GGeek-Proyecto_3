@@ -1,0 +1,3 @@
+1- La creacion de images con el factory no funciona 
+
+2- Puede ejercutar los seeders y vera una forma aproximada de la pagina como se deberia de ver
