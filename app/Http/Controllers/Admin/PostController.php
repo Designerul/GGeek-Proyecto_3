@@ -19,6 +19,9 @@ class PostController extends Controller
         $this->middleware('can:admin.posts.create')->only('create', 'store');
         $this->middleware('can:admin.posts.edit')->only('edit', 'update');
         $this->middleware('can:admin.posts.destroy')->only('destroy');
+        $this->middleware('can:admin.posts.restore')->only('restore');
+        $this->middleware('can:admin.posts.forceDelete')->only('forceDelete');
+        $this->middleware('can:admin.posts.indexDelete')->only('indexDelete');
     }
 
     /**
@@ -155,6 +158,36 @@ class PostController extends Controller
         /* Eliminar el cahce almacenado */
         Cache::flush();
 
-        return redirect()->route('admin.posts.index')->with('infodelete', 'El post se elimino con exito');
+        return redirect()->route('admin.posts.index')->with('infodelete', 'El post se elimino de forma parcial con exito');
+    }
+
+    /* Ruta de restauracion */
+    public function restore($id)
+    {
+        $post = Post::onlyTrashed()->find($id);
+
+        $this->authorize('author', $post);
+
+        $post->restore();
+
+        return redirect()->route('admin.posts.index')->with('info', 'El post se restauro con exito');
+    }
+
+    /* Ruta de eliminacion permanente */
+    public function forceDelete($id)
+    {
+        $post = Post::onlyTrashed()->find($id);
+
+        $this->authorize('author', $post);
+
+        $post->forceDelete();
+
+        return redirect()->route('admin.posts.index')->with('infodelete', 'El post se elimino de forma permanente con exito');
+    }
+
+    /* Ruta de vista posts eliminados */
+    public function indexDelete()
+    {
+        return view('admin.posts.indexdelete');
     }
 }

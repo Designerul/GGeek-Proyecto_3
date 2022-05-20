@@ -21,3 +21,9 @@ Route::resource('posts', PostController::class)->except('show')->names('admin.po
 
 /* Rutas de User */
 Route::resource('users', UserController::class)->only(['index', 'edit', 'update', 'destroy'])->names('admin.users');
+
+/* Rutas de eliminacion logica de posts */
+Route::post('/restore/{id}', [PostController::class, 'restore'])->name('admin.posts.restore');
+Route::post('/forceDelete/{id}', [PostController::class, 'forceDelete'])->name('admin.posts.forceDelete');
+Route::get('/indexDelete', [PostController::class, 'indexDelete'])->name('admin.posts.indexDelete');
+

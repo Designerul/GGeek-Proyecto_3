@@ -3,11 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Tag;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
+use Psy\Util\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -31,10 +33,10 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
 
         /* Creacion de categorias */
-        Category::factory(4)->create();
+        Category::factory(5)->create();
         
         /* Creacion de etiquetas */
-        Tag::factory(8)->create();
+        Tag::factory(10)->create();
 
         /* Creacion de posts */
         $this->call(PostSeeder::class);

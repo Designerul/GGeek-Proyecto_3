@@ -1,22 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
-use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Cache;
+use App\Models\Comment;
+use App\Models\Post;
+use Illuminate\Auth\Events\Validated;
 
-class UserController extends Controller
+class CommentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('can:admin.users.index')->only('index');
-        $this->middleware('can:admin.users.edit')->only('edit', 'update');
-        $this->middleware('can:admin.users.destroy')->only('destroy');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -24,9 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('roles:id,name')->get();
-
-        return view('admin.users.index', compact('users'));
+        //
     }
 
     /**
@@ -47,7 +37,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'body' => 'required',
+        ]);
+
+        Comment::create([
+            'body' => $request->body,
+            'post_id' => $request->post_id,
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -56,7 +55,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
         //
     }
@@ -67,11 +66,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        $roles = Role::all();
-
-        return view('admin.users.edit', compact('user' , 'roles'));
+        //
     }
 
     /**
@@ -81,11 +78,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        $user->roles()->sync($request->roles);
-
-        return redirect()->route('admin.users.edit', $user)->with('info', 'Se asigno los roles de forma correcta');
+        //
     }
 
     /**
@@ -94,12 +89,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Comment $comment)
     {
-        $user->delete();
+        /* $this->authorize('author', $comment); */
 
-        Cache::flush();
+        $comment->delete();
 
-        return redirect()->route('admin.users.index')->with('infodelete', 'Usuario eliminado con exito');
+        return redirect()->back();
     }
 }

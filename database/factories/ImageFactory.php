@@ -24,8 +24,9 @@ class ImageFactory extends Factory
      */
     public function definition()
     {
+        /* Esto no funciona como deberia, antes si funcionaba pero ya no y es mejor ignorarlo */
         return [
-            'url' => 'posts/' . $this->faker->image('public/storage/posts', 640, 480, null, false)
+            'url' => 'posts/' . $this->faker->image('public/storage/posts', 650, 480, null, false),
         ];
     }
 }

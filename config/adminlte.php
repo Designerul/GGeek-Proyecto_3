@@ -278,7 +278,7 @@ return [
             'text'  => 'Lista de post',
             'route' => 'admin.posts.index',
             'icon' => 'fas fa-fw fa-clipboard',
-            'active' => ['admin/posts/index', 'admin/posts/*/edit'],
+            'active' => ['admin/posts/index', 'admin/posts/*/edit', 'admin/indexDelete'],
             'can' => 'admin.posts.index'
         ],
         [

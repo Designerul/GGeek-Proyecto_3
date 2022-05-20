@@ -29,10 +29,15 @@
             <h2 class="h5">Listado de roles:</h2>
             {!! Form::model($user, ['route' => ['admin.users.update', $user], 'method' => 'put']) !!}
 
-                {{-- Seleccionar rol de usuario --}}
-                <div class="form-group">
-                    {!! Form::select('roles', $roles, null, ['class' => 'form-control']) !!}
-                </div>
+                {{-- Seleccionar roles de usuario --}}
+                @foreach ($roles as $role)
+                    <div>
+                        <label>
+                            {!! Form::checkbox('roles[]', $role->id, null, ['class' => 'mr-1']) !!}
+                            {{ $role->name }}
+                        </label>
+                    </div>
+                @endforeach
                 
                 {{-- Boton para agregar rol --}}
                 {!! Form::submit('Asignar rol', ['class' => 'btn btn-primary mt-2']) !!}

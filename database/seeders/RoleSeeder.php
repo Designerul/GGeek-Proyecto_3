@@ -46,5 +46,13 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.users.update'])->syncRoles([$role1]);
         Permission::create(['name' => 'admin.users.destroy'])->syncRoles([$role1]);
 
+        /* Ver rutas de comentarios */
+        Permission::create(['name' => 'comment.destroy'])->syncRoles([$role1, $role2]);
+
+        /* Ver rutas de Posts eliminados */
+        Permission::create(['name' => 'admin.posts.restore'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'admin.posts.forceDelete'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'admin.posts.indexDelete'])->syncRoles([$role1, $role2]);
+
     }
 }

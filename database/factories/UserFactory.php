@@ -24,6 +24,7 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        /* Se crean usuarios de prueba */
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),

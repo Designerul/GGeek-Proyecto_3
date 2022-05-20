@@ -25,8 +25,8 @@ class TagFactory extends Factory
      */
     public function definition()
     {
-
-        $name = $this->faker->unique()->word(20);
+        /* Se crean etiqueta de prueba */
+        $name = $this->faker->unique()->randomElement(['China', 'Cisco', 'Chuwi', 'Comedia', 'Comic-Com', 'Core del sur', 'Cougar', 'Corsair', 'Cooler Master', 'Creative']);
 
         return [
             'name' => $name,

@@ -1,11 +1,5 @@
 <div class="card">
-
-    {{-- Barra de busqueda por nombre de post --}}
-    <div class="card-header">
-        <input wire:model="search" type="text" class="form-control" placeholder="Ingrese el nombre del post">
-    </div>
-
-    @if ($posts->count())
+     @if ($posts->count())
         
         <div class="card-body">
             <table class="table table-striped">
@@ -13,7 +7,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Fecha de creacion</th>
+                        <th>Fecha de eliminacion</th>
                         <th colspan="2"></th>
                     </tr>
                 </thead>
@@ -23,18 +17,26 @@
                     <tr>
                         <td>{{ $post->id }}</td>
                         <td>{{ $post->name }}</td>
-                        <td>{{ $post->created_at }}</td>
+                        <td>{{ $post->deleted_at }}</td>
+
+                        {{-- Boton para restaurar post --}}
                         <td width="10px">
-                            <a class="btn btn-primary btn-sm" href="{{ route('admin.posts.edit', $post) }}">Editar</a>
-                        </td>
-                        <td width="10px">
-                            <form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
+                            <form action="{{ route('admin.posts.restore', $post->id) }}" method="POST">
                                 @csrf
-                                @method('delete')
+
+                                <button class="btn btn-primary btn-sm" type="submit">Restaurar</button>
+                            </form>
+                        </td>
+
+                        {{-- Boton para eliminar permanentemente --}}
+                        <td width="10px">
+                            <form action="{{ route('admin.posts.forceDelete', $post->id) }}" method="POST">
+                                @csrf
 
                                 <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
                             </form>
                         </td>
+
                     </tr>
                     @endforeach
                 </tbody>
@@ -50,5 +52,4 @@
             <strong>No existe ningun registro</strong>
         </div>
     @endif
-
 </div>

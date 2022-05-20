@@ -27,7 +27,7 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-
+       /*  Aca se crean los posts de prueba */
         $name = $this->faker->unique()->sentence();
 
         return [

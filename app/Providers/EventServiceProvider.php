@@ -8,6 +8,8 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 use App\Models\Post;
 use App\Observers\PostObserver;
+use App\Models\Comment;
+use App\Observers\CommentObserver;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -29,7 +31,11 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        /* Observador de post */
         Post::observe(PostObserver::class);
+
+        /* Observador de comentario */
+        Comment::observe(CommentObserver::class);
     }
 
     /**

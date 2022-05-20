@@ -61,7 +61,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
-    //Relacion uno a muchos
+    //Relacion uno a muchos con posts
 
     public function posts(){
         return $this->hasMany(Post::class);
@@ -69,6 +69,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getRouteKeyName()
     {
-        return "name";
+        return "email";
+    }
+
+    //Relacion uno a muchos con comentarios
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Post;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -16,7 +17,7 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        $posts = Post::factory(40)->create();
+        $posts = Post::factory(100)->create();
 
         foreach($posts as $post){
             Image::factory(1)->create([
@@ -24,8 +25,11 @@ class PostSeeder extends Seeder
                 'imageable_type' => Post::class,
             ]);
             $post->tags()->attach([
-                rand(1, 4),
-                rand(5, 8),
+                rand(1, 5),
+                rand(6, 10),
+            ]);
+            Comment::factory(5)->create([
+                'post_id' => $post->id,
             ]);
         }
     }
